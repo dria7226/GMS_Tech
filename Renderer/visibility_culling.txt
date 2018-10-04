@@ -1,0 +1,12 @@
+visible_models = 0;
+
+#include "frustum_culling.txt"
+
+if(occlusion_culling_enabled)
+{
+	#include "occlusion_culling.txt"
+}
+else
+{
+	for(var i = 0; i < array_size*array_size; i++) visible_models[i] = i;
+}

@@ -1,0 +1,12 @@
+if(fragment_mode == DEPTH_MODE)
+{
+  //alternative
+  //return vec3( floor( depth * 255.0 ) / 255.0,
+    //         fract( depth * 255.0 ),
+  //		 fract( depth * 255.0 * 255.0 ) );
+
+  vec4 d = fract(gl_FragCoord.z*(byte*byte*byte*byte - 1.0)/(byte*byte*byte*byte)*vec4(1.0, byte, byte*byte, byte*byte*byte));
+
+  gl_FragColor = d;
+  return;
+}

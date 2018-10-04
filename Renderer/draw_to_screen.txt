@@ -1,0 +1,4 @@
+shader_set_uniform_i(shader_get_uniform(standard, "vertex_mode"), VERTEX_FLAT);
+shader_set_uniform_i(shader_get_uniform(standard, "fragment_mode"), FRAGMENT_FLAT);
+
+draw_surface(DIFFUSE_SURFACE, 0, 0);

@@ -1,0 +1,10 @@
+//varying highp float depth;
+varying vec4 out_Color;
+varying vec2 out_TexCoord;
+
+uniform vec2 a_pixel;
+
+varying float gs;
+varying vec3 col;
+
+uniform int fragment_mode;

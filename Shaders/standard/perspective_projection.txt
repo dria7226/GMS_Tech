@@ -1,0 +1,12 @@
+#include "transformations.txt"
+
+//project
+gl_Position.z = length(local.xyz)/far_clip*local.x;
+
+depth = gl_Position.z;
+
+gl_Position.xy = local.yz*near_clip;
+
+gl_Position.x *= -screen_ratio;
+
+gl_Position.w = local.x;

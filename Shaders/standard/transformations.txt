@@ -1,0 +1,17 @@
+//optimize uniforms with textures
+
+//local
+vec3 local = in_Position*scale;
+
+rotate(local.xy, angle.z);
+rotate(local.xz, angle.y);
+rotate(local.yz, angle.x);
+
+//local to relative
+local += offset - camera_position - camera_offset;
+
+rotate(local.xy, -camera_angle.z-camera_angle_offset.z);
+
+rotate(local.xz, -camera_angle.y-camera_angle_offset.y);
+
+rotate(local.yz, -camera_angle.x-camera_angle_offset.x);

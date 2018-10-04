@@ -1,0 +1,26 @@
+if(vertex_mode == OCCLUSION_DRAW)
+{
+	out_Color = vec4(id, 1.0);
+	out_TexCoord = vec2(0.0);
+}
+else
+{
+	out_Color = in_Color;
+
+	gs = grayscale;
+
+	col = color;
+
+	if(in_TexCoord == vec2(0.0))
+	{
+		if(out_Color == vec4(1.0))
+			out_Color *= vec4(col, 1.0);
+
+		if(grayscale != 1.0)
+		{
+			vec4 intensity = (out_Color.rgba + out_Color.gbra + out_Color.brga)/3.0;
+			out_Color = mix(intensity, out_Color, grayscale);
+		}
+	}
+	out_TexCoord = in_TexCoord;
+}
