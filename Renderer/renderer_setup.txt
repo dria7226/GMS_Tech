@@ -1,9 +1,0 @@
-shader_set(standard);
-
-shader_set_uniform_f(shader_get_uniform(standard, "screen_ratio"), window_get_height()/window_get_width());
-shader_set_uniform_f(shader_get_uniform(standard, "a_pixel"), OCCLUSION_RATIO/window_get_width(), OCCLUSION_RATIO/window_get_height());
-
-shader_set_uniform_f(shader_get_uniform(standard, "near_clip"), 0.6);
-shader_set_uniform_f(shader_get_uniform(standard, "far_clip"), 100.0);
-
-gpu_set_tex_repeat(true);

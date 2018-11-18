@@ -1,4 +1,4 @@
-if(vertex_mode == OCCLUSION_DRAW)
+if(vertex_mode == VERTEX_OCCLUSION_DRAW)
 {
 	out_Color = vec4(id, 1.0);
 	out_TexCoord = vec2(0.0);

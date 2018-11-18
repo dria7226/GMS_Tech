@@ -1,4 +1,4 @@
-if(fragment_mode == OCCLUSION_SECOND_PASS)
+if(fragment_mode == FRAGMENT_OCCLUSION_SECOND_PASS)
 {
   gl_FragColor = vec4(1.0);
 
@@ -21,7 +21,7 @@ if(fragment_mode == OCCLUSION_SECOND_PASS)
 
       if(current_index == target_index)
       {
-        gl_FragColor = leading_color; return;
+        gl_FragData[0] = leading_color; return;
       }
     }
 

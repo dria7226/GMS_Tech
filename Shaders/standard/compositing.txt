@@ -1,4 +1,0 @@
-if(fragment_mode == COMPOSITING)
-{
-
-}

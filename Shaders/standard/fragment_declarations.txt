@@ -1,10 +1,15 @@
-//varying highp float depth;
+varying highp float depth;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;
 
 uniform vec2 a_pixel;
+uniform sampler2D sampler_a;
 
 varying float gs;
 varying vec3 col;
 
 uniform int fragment_mode;
+
+float packColor(vec4 color);
+vec4 unpackColor(float f);
+void rotate(inout vec2 point, float angle);

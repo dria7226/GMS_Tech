@@ -1,16 +1,14 @@
-SET_UNIFORM_I("vertex_mode", 3);
-SET_UNIFORM_I("fragment_mode", 0);
+SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR);
+SET_UNIFORM_I("fragment_mode", FRAGMENT_DIFFUSE);
 
 surface_set_target(occlusion);
 draw_clear(c_white);
 
 SET_UNIFORM_F("scale", 0.62408,0.5436,0.62796);
 //draw bounding volumes
-for(var i = 0; i < array_size*array_size; i++)
+ITERATE_VISIBLES
 {
-  var position = model_array[i];
-  SET_UNIFORM_F("offset", position[0], position[1], position[2] + 0.62796);
-  SET_UNIFORM_F("id", i%256/255, floor(i/256)%256/255, floor(i/(256*256))/255);
+  SET_UNIFORM_F("id", i%256/255, floor(i/256)%256/255, floor(i/(256*256))/255)
 
   vertex_submit(cube, pr_trianglelist, -1);
 }
@@ -19,8 +17,8 @@ surface_reset_target();
 //post processing
 surface_set_target(occlusion_first_pass);
 draw_clear(c_white);
-SET_UNIFORM_I("vertex_mode", 1);
-SET_UNIFORM_I("fragment_mode", 3);
+SET_UNIFORM_I("vertex_mode", 1)
+SET_UNIFORM_I("fragment_mode", 3)
 
 draw_surface(occlusion, 0, 0);
 
@@ -28,7 +26,7 @@ surface_reset_target();
 
 surface_set_target(occlusion_second_pass);
 draw_clear(c_white);
-SET_UNIFORM_I("fragment_mode", 4);
+SET_UNIFORM_I("fragment_mode", 4)
 
 draw_surface(occlusion_first_pass, 0, 0);
 
@@ -40,6 +38,7 @@ buffer_get_surface(occlusion_buffer, occlusion_second_pass, 0, 0, 0); //formatte
 var occlusion_buffer_size = buffer_get_size(occlusion_buffer)/4;
 
 //refresh visibles
+visibles = 0;
 for(var i = 0; i < occlusion_buffer_size; i++)
 {
   var visible_index = [0,0,0];
@@ -57,8 +56,8 @@ for(var i = 0; i < occlusion_buffer_size; i++)
   else
   {
     //decode visible index
-    visible_models[i] = visible_index[2] + visible_index[1]*256 + visible_index[0]*256*256;
+    visibles[i] = visible_index[2] + visible_index[1]*256 + visible_index[0]*256*256;
   }
 
-  //show_debug_message(string(i) + " : " + string(visible_models[i]));
+  //show_debug_message(string(i) + " : " + string(visibles[i]));
 }

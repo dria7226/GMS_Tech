@@ -8,10 +8,10 @@ rotate(local.xz, angle.y);
 rotate(local.yz, angle.x);
 
 //local to relative
-local += offset - camera_position - camera_offset;
+local += offset - camera_position;
 
-rotate(local.xy, -camera_angle.z-camera_angle_offset.z);
+rotate(local.xy, -camera_angle.z);
 
-rotate(local.xz, -camera_angle.y-camera_angle_offset.y);
+rotate(local.xz, -camera_angle.y);
 
-rotate(local.yz, -camera_angle.x-camera_angle_offset.x);
+rotate(local.yz, -camera_angle.x);

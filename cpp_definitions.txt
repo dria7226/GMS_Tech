@@ -1,7 +1,11 @@
-#include "vertex_definitions.txt"
+#include "Renderer/renderer_definitions.txt"
 
-#include "fragment_definitions.txt"
+#include "Shaders/uniform_setting.txt"
 
-#include "uniform_setting.txt"
+#include "Options/options_definitions.txt"
 
-#include "visibility_definitions.txt"
+#include "Tag_System/tag_definitions.txt"
+
+#define PACK_32_BITS(integer) integer%256/255, floor(integer/256)%256/255, floor(integer/(256*256))/255
+
+#define MAXIMUM_VIEW_DISTANCE 300.0

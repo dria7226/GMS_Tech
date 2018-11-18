@@ -1,7 +1,2 @@
-#ifdef UNIFORM_BUFFERS
-  #define SET_UNIFORM_I
-  #define SET_UNIFORM_F
-#else
-  #define SET_UNIFORM_I(name, value) shader_set_uniform_i(shader_get_uniform(standard, name), value);
-  #define SET_UNIFORM_F(name, ...) shader_set_uniform_f(shader_get_uniform(standard, name), __VA_ARGS__);
-#endif
+#define SET_UNIFORM_I(name, value) shader_set_uniform_i(shader_get_uniform(standard, name), value);
+#define SET_UNIFORM_F(name, ...) shader_set_uniform_f(shader_get_uniform(standard, name), __VA_ARGS__);

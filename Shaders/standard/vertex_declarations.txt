@@ -11,9 +11,7 @@ varying vec4 out_Color;
 varying vec2 out_TexCoord;
 
 uniform vec3 camera_position;
-uniform vec3 camera_offset;
 uniform vec3 camera_angle;
-uniform vec3 camera_angle_offset;
 uniform float near_clip;
 uniform float far_clip;
 uniform float screen_ratio;
@@ -27,6 +25,6 @@ uniform vec3 color;
 varying float gs;
 varying vec3  col;
 
-float packColor(vec3 color);
-vec3 unpackColor(float f);
+float packColor(vec4 color);
+vec4 unpackColor(float f);
 void rotate(inout vec2 point, float angle);

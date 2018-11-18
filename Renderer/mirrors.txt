@@ -1,0 +1,40 @@
+SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
+
+ITERATE_MIRRORS
+{
+	 #include "visibility_culling.txt"
+
+	 #ifdef CACHED_POSITION_SURFACE
+	 surface_set_target(surfaces[MIRROR_POSITION]);
+	 draw_clear(c_white);
+	 surface_reset_target();
+	 surface_set_target_ext(2, surfaces[MIRROR_POSITION]);
+	 #endif
+
+	 surface_set_target(surfaces[MIRROR_DEPTH]);
+	 draw_clear(c_white);
+	 surface_reset_target();
+	 surface_set_target_ext(1, surfaces[MIRROR_DEPTH]);
+
+	 surface_set_target_ext(0, surfaces[MIRROR_DIFFUSE]);
+	 draw_clear(c_white);
+
+   #include "diffuse_and_depth.txt"
+
+   surface_reset_target();
+
+   surface_set_target_ext(0, surfaces[DIFFUSE]);
+   surface_set_target_ext(1, surfaces[DEPTH]);
+   #ifdef CACHED_POSITION_SURFACE
+   surface_set_target_ext(2, surfaces[POSITION]);
+   #endif
+   texture_set_stage(sampler_a, surface_texture_pointers[MIRROR_DEPTH]);
+   #ifdef CACHED_POSITION_SURFACE
+   texture_set_stage(sampler_b, surface_texture_pointers[MIRROR_POSITION]);
+   #endif
+   SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR_FROM_TEXTURE)
+
+   vertex_submit(/*plane mesh*/, pr_trianglelist, surfaces[MIRROR_DIFFUSE]);
+
+   surface_reset_target();
+}

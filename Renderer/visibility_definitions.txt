@@ -1,1 +1,2 @@
-#define ITERATE_VISIBLES for(var i = 0; i < arraylength_1d(VISIBLES); i++)
+#define CLEAR_VISIBLES
+#define ITERATE_VISIBLES for(var i = 0; i < array_length_1d(visibles); i++)

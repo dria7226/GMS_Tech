@@ -1,0 +1,58 @@
+//NOTES
+//account for animation as well
+//account for mirrors
+
+SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
+SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
+
+var query = [Position, Rotation, Scale, Color, VBO];
+
+var index = search_tags(visibles[i], query);
+
+if(index[0] != -1)
+{
+  var id_tag = tags[|query[0]]; id_tag = id_tag[|index[0]];
+  SET_UNIFORM_F("offset", id_tag.X, id_tag.Y, id_tag.Z)
+}
+else
+  SET_UNIFORM_F("offset", 0,0,0)
+
+if(index[1] != -1)
+{
+  id_tag = tags[|query[1]]; id_tag = id_tag[|index[1]];
+  SET_UNIFORM_F("angle", id_tag.roll, id_tag.pitch, id_tag.yaw)
+}
+else
+  SET_UNIFORM_F("angle", 0,0,0)
+
+if(index[2] != -1)
+{
+  id_tag = tags[|query[2]]; id_tag = id_tag[|index[2]];
+  SET_UNIFORM_F("scale", id_tag.X, id_tag.Y, id_tag.Z)
+}
+else
+  SET_UNIFORM_F("scale", 1,1,1)
+
+SET_UNIFORM_F("grayscale", 1.0)
+
+if(index[3] != -1)
+{
+  id_tag = tags[|query[3]]; id_tag = id_tag[|index[3]];
+  SET_UNIFORM_F("color", id_tag.R, id_tag.G, id_tag.B)
+}
+else
+  SET_UNIFORM_F("color", 0,0,0)
+
+if(index[4] != -1)
+{
+  id_tag = tags[|query[4]];
+  vertex_submit(id_tag[|index[4]], pr_trianglelist, 0);
+}
+
+//if(index[0] == -1 || index[1] == -1) continue;
+
+//SET_UNIFORM_F("id", PACK_32_BITS(index[0]))
+
+//#include "pick_and_render_lod.txt"
+
+surface_reset_target();

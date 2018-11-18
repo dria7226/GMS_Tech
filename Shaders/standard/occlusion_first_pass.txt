@@ -1,4 +1,4 @@
-if(fragment_mode == OCCLUSION_FIRST_PASS)
+if(fragment_mode == FRAGMENT_OCCLUSION_FIRST_PASS)
 {
   gl_FragColor = texture2D(gm_BaseTexture, out_TexCoord);
   if(gl_FragColor != vec4(1.0))

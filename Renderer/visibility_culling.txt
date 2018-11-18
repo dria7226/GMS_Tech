@@ -1,12 +1,25 @@
-visible_models = 0;
+//NOTES
+//account for mirrors too
+//account for lights too
+
+//clear visibles
+visibles = 0;
 
 #include "frustum_culling.txt"
 
-if(occlusion_culling_enabled)
+switch(Options.occlusion_culling)
 {
-	#include "occlusion_culling.txt"
-}
-else
-{
-	for(var i = 0; i < array_size*array_size; i++) visible_models[i] = i;
+	case 0: break;
+
+	case 1: //GPU occlusion culling
+	{
+		#include "gpu_occlusion_culling.txt"
+	}
+	break;
+
+	case 2: //CPU occlusion culling
+	{
+		#include "cpu_occlusion_culling.txt"
+	}
+	break;
 }
