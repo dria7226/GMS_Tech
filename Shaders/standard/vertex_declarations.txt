@@ -1,12 +1,14 @@
 attribute vec2 in_TexCoord;		// (u,v)
 attribute vec3 in_Position;		// (x,y,z)
-attribute vec4 in_Color;		// (r,g,b)
+attribute vec3 in_Normal;     // (x,y,z)
+attribute vec4 in_Color;		  // (r,g,b)
 
 uniform vec3 id;
 
 uniform int vertex_mode;
 
 varying highp float depth;
+varying vec3 out_Normal;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;
 

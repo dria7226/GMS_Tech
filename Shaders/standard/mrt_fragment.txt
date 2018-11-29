@@ -2,7 +2,10 @@ if(fragment_mode == FRAGMENT_REGULAR)
 {
   vec4 c = out_Color;
 
-  if(mod(gl_FragCoord.x - 0.5, 2.0) == 0.0)
+  //calculate target type
+  float target_type = mod(gl_FragCoord.x - 0.5, 2.0) + mod(gl_FragCoord.y - 0.5, 2.0)*2.0;
+
+  if(target_type == 0.0)
   {
     //DIFFUSE
     if(out_TexCoord != vec2(0.0))
@@ -21,10 +24,23 @@ if(fragment_mode == FRAGMENT_REGULAR)
       }
     }
   }
-  else
+
+  if(target_type == 1.0)
   {
     //DEPTH
     c = unpackColor(depth);
+  }
+
+  if(target_type == 2.0)
+  {
+    //NORMAL
+    c = vec4(out_Normal, 1.0);
+  }
+
+  if(target_type == 3.0)
+  {
+    //EMPTY
+    c = vec4(1.0);
   }
 
   gl_FragColor = c;

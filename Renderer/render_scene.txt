@@ -1,8 +1,6 @@
-surface_set_target(surfaces[DIFFUSE_AND_DEPTH]);
+surface_set_target(surfaces[MRT]);
 
-#include "diffuse_and_depth.txt"
-
-#include "normal.txt"
+#include "mrt.txt"
 
 //#include "edge.txt"
 

@@ -1,6 +1,6 @@
-#define DIFFUSE_AND_DEPTH 0
-#define MIRROR_DIFFUSE_AND_DEPTH 1
-#define NORMAL_AND_EDGE 2
+#define MRT 0
+#define MIRROR_MRT 1
+#define EDGE 2
 #define LIGHT_ACCUMULATION 3
 #define OCCLUSION 4
 #define OCCLUSION_DEBUG 5
