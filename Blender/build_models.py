@@ -102,13 +102,17 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
         if not file.endswith('.blend'):
             continue
 
-        original_path = os.path.join(subdir,file)
-
         #compare "last modified" dates
         needs_update = False
 
         #if equivalent doesnt exist, then needs update
-        equivalent_path = original_path.replace('Blender','Compiled_Assets').replace('.blend','.dat')
+        equivalent_folder= subdir.replace('Blender','Compiled_Assets')
+
+        if not os.path.exists(equivalent_folder):
+            os.makedirs(equivalent_folder)
+            needs_update = True
+
+        equivalent_path = os.path.join(equivalent_folder, file.replace('.blend','.dat'))
 
         if not os.access(equivalent_path, os.F_OK):
             needs_update = True
@@ -120,7 +124,7 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
 
         if needs_update:
             #open file in blender
-            bpy.ops.wm.open_mainfile(filepath=original_path)
+            bpy.ops.wm.open_mainfile(filepath=os.path.join(subdir, file))
 
             do_export(equivalent_path)
 
