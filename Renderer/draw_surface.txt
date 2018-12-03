@@ -1,0 +1,2 @@
+var vbo = tags[|VBO];
+vertex_submit(vbo[|1], pr_trianglelist, surface_get_texture(surfaces[DRAW_SURFACE_ID]));

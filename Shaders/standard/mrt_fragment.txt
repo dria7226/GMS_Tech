@@ -23,27 +23,27 @@ if(fragment_mode == FRAGMENT_REGULAR)
         c = mix(intensity, c, gs);
       }
     }
+
+    gl_FragColor = c;
   }
 
   if(target_type == 1.0)
   {
     //DEPTH
-    c = unpackColor(depth);
+    gl_FragColor = unpackColor(depth);
   }
 
   if(target_type == 2.0)
   {
     //NORMAL
-    c = vec4(out_Normal, 1.0);
+    gl_FragColor = vec4((normalize(out_Normal)+vec3(1.0))/2.0, 1.0);
   }
 
   if(target_type == 3.0)
   {
-    //EMPTY
-    c = vec4(1.0);
+    //EXTRA - LIGHT ACCUMULATION
+    gl_FragColor = vec4((normalize(out_Normal)+vec3(1.0))/2.0, 1.0);
   }
-
-  gl_FragColor = c;
 
   return;
 }

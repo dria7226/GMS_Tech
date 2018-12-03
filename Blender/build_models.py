@@ -7,7 +7,6 @@ import bpy_extras
 class Property:
     apply_modifiers = True
     apply_transforms = True
-    export_normals = True
     export_colors = True
     export_uvs = True
     flip_uvs = True
@@ -16,11 +15,16 @@ properties = Property()
 
 #properties.apply_modifiers = False
 
+model_within_bounds = True
+
 def writeVertex(mesh, face, i, file):
     index = face.vertices[i]
     vert = mesh.vertices[index]
 
-    file.write(struct.pack('<fff',vert.co.x, vert.co.y, vert.co.z))
+    if not(abs(vert.co.x) < 100 and abs(vert.co.y) < 100 and abs(vert.co.z) < 100):
+        nothing
+    else:
+        model_within_bounds = False
 
     if face.use_smooth:
         nx = vert.normal.x
@@ -31,8 +35,12 @@ def writeVertex(mesh, face, i, file):
         ny = face.normal.y
         nz = face.normal.z
 
-    if properties.export_normals:
-        file.write(struct.pack('<fff', nx, ny, nz))
+    nx = (nx + 1)*128*100
+    ny = (ny + 1)*128*100
+    nz = (nz + 1)*128*100
+
+    #put position and normal together
+    file.write(struct.pack('<fff',vert.co.x + math.copysign(nx, vert.co.x), vert.co.y + math.copysign(ny, vert.co.y), vert.co.z + math.copysign(nz, vert.co.z)))
 
     if properties.export_colors:
         if len(mesh.vertex_colors) > 0:
@@ -114,10 +122,12 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
 
         equivalent_path = os.path.join(equivalent_folder, file.replace('.blend','.dat'))
 
+        print(equivalent_path)
+
         if not os.access(equivalent_path, os.F_OK):
             needs_update = True
         else:
-            original_mtime = os.path.getmtime(original_path)
+            original_mtime = os.path.getmtime(subdir)
             equivalent_time = os.path.getmtime(equivalent_path)
             if original_mtime > equivalent_time:
                 needs_update = True
@@ -126,9 +136,12 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
             #open file in blender
             bpy.ops.wm.open_mainfile(filepath=os.path.join(subdir, file))
 
+            model_within_bounds = True
+
             do_export(equivalent_path)
 
-            #remove file in blender
+            if not model_within_bounds:
+                print("Model ",file," is out of bounds")
 
             total += 1
 

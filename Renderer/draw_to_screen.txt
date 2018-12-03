@@ -7,4 +7,4 @@ SET_UNIFORM_I("fragment_mode", FRAGMENT_FLAT)
 //  draw_surface_part(surface[PLAYER_TWO],0,0, window_width*SPLITSCREEN_HORIZONTAL_RATIO, window_height/2, 0, window_height/2);
 //}
 //else
-  draw_surface(surfaces[PLAYER_ONE], 0 ,0);
+    draw_surface(surfaces[PLAYER_ONE],0,0);

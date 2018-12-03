@@ -16,7 +16,7 @@ surface_set_target(surfaces[MRT]);
 
 SET_UNIFORM_I("vertex_mode", VERTEX_FLAT)
 SET_UNIFORM_I("fragment_mode", FRAGMENT_FLAT)
-surface_set_target(surfaces[PLAYER_ONE]);
+surface_set_target(FINAL_SURFACE);
 var scale = surface_info[MRT];
-draw_surface_ext(surfaces[MRT],0,0, 1/scale[0], 1/scale[1], 0, c_white, 1.0);
+draw_surface_ext(surfaces[MRT],0,0, 1/scale[0], 1/scale[1],0,c_white,1.0);
 surface_reset_target();

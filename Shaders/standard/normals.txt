@@ -1,0 +1,4 @@
+out_Normal = normal;
+rotate(out_Normal.xy, angle.z);
+rotate(out_Normal.xz, angle.y);
+rotate(out_Normal.yz, angle.x);
