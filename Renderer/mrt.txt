@@ -20,7 +20,7 @@ else
 if(index[1] != -1)
 {
   id_tag = tags[|query[1]]; id_tag = id_tag[|index[1]];
-  SET_UNIFORM_F("angle", id_tag.roll, id_tag.pitch, id_tag.yaw + alpha)
+  SET_UNIFORM_F("angle", id_tag.roll, id_tag.pitch, id_tag.yaw)
 }
 else
   SET_UNIFORM_F("angle", 0,0,0)

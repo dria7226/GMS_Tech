@@ -21,9 +21,7 @@ def writeVertex(mesh, face, i, file):
     index = face.vertices[i]
     vert = mesh.vertices[index]
 
-    if not(abs(vert.co.x) < 100 and abs(vert.co.y) < 100 and abs(vert.co.z) < 100):
-        nothing
-    else:
+    if abs(vert.co.x) > 100 or abs(vert.co.y) > 100 or abs(vert.co.z) > 100:
         model_within_bounds = False
 
     if face.use_smooth:
@@ -38,6 +36,12 @@ def writeVertex(mesh, face, i, file):
     nx = (nx + 1)*128*100
     ny = (ny + 1)*128*100
     nz = (nz + 1)*128*100
+
+    print("vx: ", vert.co.x,"vy: ", vert.co.y,"vz: ", vert.co.z)
+
+    print("nx: ", nx,"ny: ", ny,"nz: ", nz)
+
+    print("x: ", vert.co.x + math.copysign(nx, vert.co.x),"y: ", vert.co.y + math.copysign(ny, vert.co.y),"z: ", vert.co.z + math.copysign(nz, vert.co.z))
 
     #put position and normal together
     file.write(struct.pack('<fff',vert.co.x + math.copysign(nx, vert.co.x), vert.co.y + math.copysign(ny, vert.co.y), vert.co.z + math.copysign(nz, vert.co.z)))
@@ -122,8 +126,6 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
 
         equivalent_path = os.path.join(equivalent_folder, file.replace('.blend','.dat'))
 
-        print(equivalent_path)
-
         if not os.access(equivalent_path, os.F_OK):
             needs_update = True
         else:
@@ -133,6 +135,7 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
                 needs_update = True
 
         if needs_update:
+            print(equivalent_path)
             #open file in blender
             bpy.ops.wm.open_mainfile(filepath=os.path.join(subdir, file))
 
