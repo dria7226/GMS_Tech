@@ -7,6 +7,7 @@ import bpy_extras
 class Property:
     apply_modifiers = True
     apply_transforms = True
+    export_normals = True
     export_colors = True
     export_uvs = True
     flip_uvs = True
@@ -21,8 +22,9 @@ def writeVertex(mesh, face, i, file):
     index = face.vertices[i]
     vert = mesh.vertices[index]
 
-    if abs(vert.co.x) > 100 or abs(vert.co.y) > 100 or abs(vert.co.z) > 100:
+    if abs(vert.co.x) >= 100 or abs(vert.co.y) >= 100 or abs(vert.co.z) >= 100:
         model_within_bounds = False
+        print("ERR x: ", vert.co.x,"y: ", vert.co.y,"z: ", vert.co.z)
 
     if face.use_smooth:
         nx = vert.normal.x
@@ -33,18 +35,15 @@ def writeVertex(mesh, face, i, file):
         ny = face.normal.y
         nz = face.normal.z
 
-    nx = (nx + 1)*128*100
-    ny = (ny + 1)*128*100
-    nz = (nz + 1)*128*100
-
-    print("vx: ", vert.co.x,"vy: ", vert.co.y,"vz: ", vert.co.z)
-
-    print("nx: ", nx,"ny: ", ny,"nz: ", nz)
-
-    print("x: ", vert.co.x + math.copysign(nx, vert.co.x),"y: ", vert.co.y + math.copysign(ny, vert.co.y),"z: ", vert.co.z + math.copysign(nz, vert.co.z))
+    nx = math.floor((nx + 1)*128)*100
+    ny = math.floor((ny + 1)*128)*100
+    nz = math.floor((nz + 1)*128)*100
 
     #put position and normal together
-    file.write(struct.pack('<fff',vert.co.x + math.copysign(nx, vert.co.x), vert.co.y + math.copysign(ny, vert.co.y), vert.co.z + math.copysign(nz, vert.co.z)))
+    if properties.export_normals:
+        file.write(struct.pack('<fff',vert.co.x + math.copysign(nx, vert.co.x), vert.co.y + math.copysign(ny, vert.co.y), vert.co.z + math.copysign(nz, vert.co.z)))
+    else:
+        file.write(struct.pack('<fff', vert.co.x, vert.co.y, vert.co.z))
 
     if properties.export_colors:
         if len(mesh.vertex_colors) > 0:
@@ -135,7 +134,6 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
                 needs_update = True
 
         if needs_update:
-            print(equivalent_path)
             #open file in blender
             bpy.ops.wm.open_mainfile(filepath=os.path.join(subdir, file))
 
@@ -144,7 +142,8 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
             do_export(equivalent_path)
 
             if not model_within_bounds:
-                print("Model ",file," is out of bounds")
+                os.remove(equivalent_path)
+                print("Model ",file," is out of bounds (coordinate value should be less than 100). Model removed. Please correct and re-run script.")
 
             total += 1
 

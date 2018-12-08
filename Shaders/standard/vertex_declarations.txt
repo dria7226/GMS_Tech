@@ -7,7 +7,6 @@ uniform vec3 id;
 uniform int vertex_mode;
 
 varying highp float depth;
-vec3 normal = vec3(0.0);
 varying vec3 out_Normal;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;
