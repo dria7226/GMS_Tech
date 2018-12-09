@@ -9,3 +9,5 @@
 #define PACK_32_BITS(integer) integer%256/255, floor(integer/256)%256/255, floor(integer/(256*256))/255
 
 #define MAXIMUM_VIEW_DISTANCE 300.0
+
+#define COMPRESSED_NORMAL_POSITION 1000.0

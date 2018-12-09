@@ -4,6 +4,8 @@ import mathutils, math ,struct
 import shutil
 import bpy_extras
 
+COMPRESSED_NORMAL_POSITION = 1000.0
+
 class Property:
     apply_modifiers = True
     apply_transforms = True
@@ -22,7 +24,7 @@ def writeVertex(mesh, face, i, file):
     index = face.vertices[i]
     vert = mesh.vertices[index]
 
-    if abs(vert.co.x) >= 100 or abs(vert.co.y) >= 100 or abs(vert.co.z) >= 100:
+    if abs(vert.co.x) >= COMPRESSED_NORMAL_POSITION or abs(vert.co.y) >= COMPRESSED_NORMAL_POSITION or abs(vert.co.z) >= COMPRESSED_NORMAL_POSITION:
         model_within_bounds = False
         print("ERR x: ", vert.co.x,"y: ", vert.co.y,"z: ", vert.co.z)
 
@@ -35,9 +37,9 @@ def writeVertex(mesh, face, i, file):
         ny = face.normal.y
         nz = face.normal.z
 
-    nx = math.floor((nx + 1)*128)*100
-    ny = math.floor((ny + 1)*128)*100
-    nz = math.floor((nz + 1)*128)*100
+    nx = math.floor((nx + 1)*128)*COMPRESSED_NORMAL_POSITION
+    ny = math.floor((ny + 1)*128)*COMPRESSED_NORMAL_POSITION
+    nz = math.floor((nz + 1)*128)*COMPRESSED_NORMAL_POSITION
 
     #put position and normal together
     if properties.export_normals:
