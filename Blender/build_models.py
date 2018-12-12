@@ -4,7 +4,7 @@ import mathutils, math ,struct
 import shutil
 import bpy_extras
 
-COMPRESSED_NORMAL_POSITION = 1000.0
+COMPRESSED_NORMAL_POSITION = 100.0
 
 class Property:
     apply_modifiers = True
@@ -127,17 +127,19 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
 
         equivalent_path = os.path.join(equivalent_folder, file.replace('.blend','.dat'))
 
+        original_path = os.path.join(subdir, file)
+
         if not os.access(equivalent_path, os.F_OK):
             needs_update = True
         else:
-            original_mtime = os.path.getmtime(subdir)
-            equivalent_time = os.path.getmtime(equivalent_path)
-            if original_mtime > equivalent_time:
+            original_mtime = os.path.getmtime(original_path)
+            equivalent_mtime = os.path.getmtime(equivalent_path)
+            if original_mtime > equivalent_mtime:
                 needs_update = True
 
         if needs_update:
             #open file in blender
-            bpy.ops.wm.open_mainfile(filepath=os.path.join(subdir, file))
+            bpy.ops.wm.open_mainfile(filepath=original_path)
 
             model_within_bounds = True
 
