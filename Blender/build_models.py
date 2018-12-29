@@ -4,7 +4,7 @@ import mathutils, math ,struct
 import shutil
 import bpy_extras
 
-COMPRESSED_NORMAL_POSITION = 100.0
+COMPRESSED_NORMAL_POSITION = 10.0
 
 class Property:
     apply_modifiers = True
@@ -16,7 +16,7 @@ class Property:
 
 properties = Property()
 
-#properties.apply_modifiers = False
+properties.export_normals = False
 
 model_within_bounds = True
 
