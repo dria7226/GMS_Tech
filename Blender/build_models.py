@@ -16,7 +16,7 @@ class Property:
 
 properties = Property()
 
-properties.export_normals = False
+#properties.export_normals = False
 
 model_within_bounds = True
 
@@ -147,7 +147,7 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
 
             if not model_within_bounds:
                 os.remove(equivalent_path)
-                print("Model ",file," is out of bounds (coordinate value should be less than 100). Model removed. Please correct and re-run script.")
+                print("Model ",file," is out of bounds (coordinate value should be less than ", COMPRESSED_NORMAL_POSITION,"). Model removed. Please correct and re-run script.")
 
             total += 1
 
