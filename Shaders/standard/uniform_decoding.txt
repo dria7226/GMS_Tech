@@ -1,0 +1,41 @@
+//optimize uniforms with textures
+if(id < UNIFORM_BUFFER_WIDTH*UNIFORM_BUFFER_WIDTH)
+{
+    a_pixel = vec2(1.0/UNIFORM_BUFFER_WIDTH);
+    vec2 coordinates = vec2(mod(id, UNIFORM_BUFFER_WIDTH), 0.0);
+    coordinates.y = (id/UNIFORM_BUFFER_WIDTH - coordinates.x)/;
+    coordinates *= 3.0/UNIFORM_BUFFER_WIDTH;
+
+    //offset
+    vec4 reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,0.0));
+    offset.x = vec4_to_float(reading)*MAX_WORLD_WIDTH + (MIN_OFFSET);
+
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(1.0,0.0));
+    offset.y = vec4_to_float(reading)*MAX_WORLD_WIDTH + (MIN_OFFSET);
+
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(2.0,0.0));
+    offset.z = vec4_to_float(reading)*MAX_WORLD_WIDTH + (MIN_OFFSET);
+
+    //scale
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,1.0));
+    scale.x = vec4_to_float(reading)*byte + (MIN_SCALE);
+
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(1.0,1.0));
+    scale.y = vec4_to_float(reading)*byte + (MIN_SCALE);
+
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(2.0,1.0));
+    scale.z = vec4_to_float(reading)*byte + (MIN_SCALE);
+    
+    //color and grayscale
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,2.0));
+    color.rgb = reading.rgb;
+    grayscale = reading.a;
+
+    //angle
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(1.0,2.0));
+    angle.x = vec4_to_float(vec4(angle_reading.rg, 0.0, 0.0))*2.0*pi + (MIN_ANGLE);
+    angle.y = vec4_to_float(vec4(angle_reading.ba, 0.0, 0.0))*2.0*pi + (MIN_ANGLE);
+
+    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(2.0,2.0));
+    angle.z = vec4_to_float(vec4(angle_reading.rg, 0.0, 0.0))*2.0*pi + (MIN_ANGLE);
+}

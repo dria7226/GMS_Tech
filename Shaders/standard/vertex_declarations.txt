@@ -3,6 +3,7 @@ attribute vec4 in_Color;		// (r,g,b)
 attribute vec2 in_TexCoord;		// (u,v)
 
 uniform vec3 id;
+uniform sampler2D uniform_buffer;
 
 uniform int vertex_mode;
 
@@ -18,8 +19,11 @@ uniform float far_clip;
 uniform float screen_ratio;
 
 uniform vec3 offset;
+varying vec3 pass_offset;
 uniform vec3 angle;
+varying vec3 pass_angle;
 uniform vec3 scale;
+varying vec3 pass_scale;
 
 uniform float grayscale;
 uniform vec3 color;

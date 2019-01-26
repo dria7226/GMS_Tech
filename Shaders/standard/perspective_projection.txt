@@ -2,8 +2,6 @@
 
 //project
 depth = length(local.xyz);
-// if(local.x < 0.0)
-//     depth *= abs(local.x) + 1.0;
 
 gl_Position.z = depth/far_clip*local.x;
 

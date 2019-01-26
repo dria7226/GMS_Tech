@@ -2,10 +2,7 @@
 //account for animation as well
 //account for mirrors
 
-SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
-SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
-
-var query = [Position, Rotation, Scale, Color, VBO];
+var query = [Position, Rotation, Scale, Color, Grayscale, VBO];
 
 var index = search_tags(visibles[i], query);
 
@@ -33,8 +30,6 @@ if(index[2] != -1)
 else
   SET_UNIFORM_F("scale", 1,1,1)
 
-SET_UNIFORM_F("grayscale", 1.0)
-
 if(index[3] != -1)
 {
   id_tag = tags[|query[3]]; id_tag = id_tag[|index[3]];
@@ -45,14 +40,16 @@ else
 
 if(index[4] != -1)
 {
-  id_tag = tags[|query[4]];
-  vertex_submit(id_tag[|index[4]], pr_trianglelist, 0);
+    id_tag = tags[|query[4]];
+    SET_UNIFORM_F("grayscale", id_tag[|index[4]])
 }
-
-//if(index[0] == -1 || index[1] == -1) continue;
-
-//SET_UNIFORM_F("id", PACK_32_BITS(index[0]))
+else
+    SET_UNIFORM_F("grayscale", 1.0)
 
 //#include "pick_and_render_lod.txt"
 
-surface_reset_target();
+if(index[5] != -1)
+{
+  id_tag = tags[|query[5]];
+  vertex_submit(id_tag[|index[5]], pr_trianglelist, 0);
+}

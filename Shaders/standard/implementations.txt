@@ -18,3 +18,24 @@ vec4 unpackColor(float f)
   enc.rgb -= enc.gba/vec3(byte);
   return enc;
 }
+
+//percentage to partial percentages
+vec4 float_to_vec4(float f)
+{
+    float max_value = byte/256.0;
+    float r = floor(f/max_value);
+    f -= r*max_value;
+    max_value /= 256.0;
+    float g = floor(f/max_value);
+    f -= g*max_value;
+    max_value /= 256.0;
+    float b = floor(f/max_value);
+    f -= b*max_value;
+    max_value /= byte;
+    float a = floor(f/max_value);
+
+    return vec4(r,g,b,a);
+}
+
+//partial percentages to percentage
+#define vec4_to_float(color) dot(vec3(color.r*byte, color.g*byte, color.b*byte  + color.a), vec3(1.0)/vec3(256.0, 256.0*256.0, 256.0*256.0*256.0))

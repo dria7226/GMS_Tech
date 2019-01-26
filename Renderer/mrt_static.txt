@@ -1,0 +1,13 @@
+SET_UNIFORM_I("id", i)
+
+var query = [VBO];
+
+var index = search_tags(visibles[i], query);
+
+//#include "pick_and_render_lod.txt"
+
+if(index[0] != -1)
+{
+  id_tag = tags[|query[0]];
+  vertex_submit(id_tag[|index[0]], pr_trianglelist, 0);
+}
