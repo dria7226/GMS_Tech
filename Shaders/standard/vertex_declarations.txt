@@ -19,11 +19,8 @@ uniform float far_clip;
 uniform float screen_ratio;
 
 uniform vec3 offset;
-varying vec3 pass_offset;
 uniform vec3 angle;
-varying vec3 pass_angle;
 uniform vec3 scale;
-varying vec3 pass_scale;
 
 uniform float grayscale;
 uniform vec3 color;
@@ -33,3 +30,4 @@ varying vec3  col;
 float packColor(vec4 color);
 vec4 unpackColor(float f);
 void rotate(inout vec2 point, float angle);
+float vec4_to_float(vec4 color);

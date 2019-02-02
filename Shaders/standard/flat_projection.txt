@@ -1,7 +1,4 @@
 gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.0);
-pass_offset = offset;
-pass_angle = angle;
-pass_scale = scale;
 out_Color = in_Color;
 out_TexCoord = in_TexCoord;
 out_Normal = vec3(0.0);

@@ -1,4 +1,4 @@
-SET_UNIFORM_I("id", i)
+ SET_UNIFORM_F("id", PACK_32_BITS(i))
 
 var query = [VBO];
 

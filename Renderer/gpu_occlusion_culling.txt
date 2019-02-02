@@ -6,9 +6,9 @@ draw_clear(c_white);
 
 SET_UNIFORM_F("scale", 0.62408,0.5436,0.62796);
 //draw bounding volumes
-ITERATE_VISIBLES
+ITERATE_STATICS
 {
-  SET_UNIFORM_F("id", i%256/255, floor(i/256)%256/255, floor(i/(256*256))/255)
+  SET_UNIFORM_F("id", PACK_32_BITS(i))
 
   vertex_submit(cube, pr_trianglelist, -1);
 }
