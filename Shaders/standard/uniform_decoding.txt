@@ -2,7 +2,7 @@
 float packed_id = dot(id, vec3(byte, byte*256.0, byte*256.0*256.0));
 if(packed_id < UNIFORM_BUFFER_WIDTH*UNIFORM_BUFFER_WIDTH)
 {
-    vec2 a_pixel = vec2(1.0/UNIFORM_BUFFER_WIDTH);
+    vec2 a_pixel = vec2(1.0/UNIFORM_BUFFER_WIDTH/3.0);
     vec2 coordinates = vec2(mod(packed_id, UNIFORM_BUFFER_WIDTH), 0.0);
     coordinates.y = packed_id/UNIFORM_BUFFER_WIDTH - coordinates.x;
     coordinates *= 3.0/UNIFORM_BUFFER_WIDTH;
@@ -16,6 +16,8 @@ if(packed_id < UNIFORM_BUFFER_WIDTH*UNIFORM_BUFFER_WIDTH)
 
     reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(2.0,0.0));
     final_offset.z = vec4_to_float(reading)*MAX_WORLD_WIDTH + (MIN_OFFSET);
+
+    final_offset = vec3(0.0);
 
     //scale
     reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,1.0));
