@@ -20,7 +20,6 @@ uniform float screen_ratio;
 
 uniform vec3 offset;
 uniform vec3 angle;
-uniform vec3 scale;
 
 uniform float grayscale;
 uniform vec3 color;

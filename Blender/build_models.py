@@ -125,7 +125,7 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
             os.makedirs(equivalent_folder)
             needs_update = True
 
-        equivalent_path = os.path.join(equivalent_folder, file.replace('.blend','.dat'))
+        equivalent_path = os.path.join(equivalent_folder, file.replace('.blend',''))
 
         original_path = os.path.join(subdir, file)
 

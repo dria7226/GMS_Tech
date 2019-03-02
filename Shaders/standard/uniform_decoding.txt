@@ -19,16 +19,6 @@ if(packed_id < UNIFORM_BUFFER_WIDTH*UNIFORM_BUFFER_WIDTH)
 
     final_offset = vec3(0.0);
 
-    //scale
-    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,1.0));
-    final_scale.x = vec4_to_float(reading)*byte + (MIN_SCALE);
-
-    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(1.0,1.0));
-    final_scale.y = vec4_to_float(reading)*byte + (MIN_SCALE);
-
-    reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(2.0,1.0));
-    final_scale.z = vec4_to_float(reading)*byte + (MIN_SCALE);
-
     //color and grayscale
     reading = texture2D(uniform_buffer, coordinates + a_pixel*vec2(0.0,2.0));
     col.rgb = reading.rgb;

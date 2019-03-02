@@ -1,3 +1,0 @@
-#define DECLARE_AND_LOAD_TAG(declaration, type, index) var declaration = tags[|type]; declaration = declaration[|index];
-
-#define LOAD_TAG(name, type, index) name = tags[|type]; name = name[|index];

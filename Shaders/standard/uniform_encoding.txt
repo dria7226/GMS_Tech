@@ -52,55 +52,6 @@ if(fragment_mode == FRAGMENT_UNIFORM_ENCODING)
         return;
     }
 
-    //scale
-    if(target_type == 3.0)
-    {
-        if(pass_scale.x > MAX_SCALE)
-        {
-            gl_FragColor = float_to_vec4(1.0); return;
-        }
-
-        if(pass_scale.x < MIN_SCALE)
-        {
-            gl_FragColor = float_to_vec4(0.0); return;
-        }
-
-        gl_FragColor = float_to_vec4((pass_scale.x - (MIN_SCALE))/byte);
-        return;
-    }
-
-    if(target_type == 4.0)
-    {
-        if(pass_scale.y > MAX_SCALE)
-        {
-            gl_FragColor = float_to_vec4(1.0); return;
-        }
-
-        if(pass_scale.y < MIN_SCALE)
-        {
-            gl_FragColor = float_to_vec4(0.0); return;
-        }
-
-        gl_FragColor = float_to_vec4((pass_scale.y - (MIN_SCALE))/byte);
-        return;
-    }
-
-    if(target_type == 5.0)
-    {
-        if(pass_scale.z > MAX_SCALE)
-        {
-            gl_FragColor = float_to_vec4(1.0); return;
-        }
-
-        if(pass_scale.z < MIN_SCALE)
-        {
-            gl_FragColor = float_to_vec4(0.0); return;
-        }
-
-        gl_FragColor = float_to_vec4((pass_scale.z - (MIN_SCALE))/byte);
-        return;
-    }
-
     //color and grayscale
     if(target_type == 6.0)
     {
