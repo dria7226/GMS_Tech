@@ -1,7 +1,7 @@
 vec3 final_offset = offset;
 vec3 final_angle = angle;
 
-#include "uniform_decoding.txt"
+#include "uniform_decoding.c"
 
 //local - extract normal and then proceed
 vec3 local = abs(in_Position);

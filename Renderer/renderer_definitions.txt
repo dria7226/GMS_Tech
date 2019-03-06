@@ -1,7 +1,0 @@
-#include "frame_buffers.txt"
-
-#include "vertex_definitions.txt"
-
-#include "fragment_definitions.txt"
-
-#include "visibility_definitions.txt"

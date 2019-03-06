@@ -1,6 +1,0 @@
-var vbo = tags[VBO];
-vbo = tags[|index[1]];
-
-vertex_submit(vbo.lod[(visibles.distance[i] + Options.lod_offset)/MAX_DISTANCE*2)],
-              pr_trianglelist,
-              0);
