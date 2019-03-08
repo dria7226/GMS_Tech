@@ -3,7 +3,7 @@ surface_set_target(surfaces[MRT]);
 SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
 SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
 
-texture_set_stage(uniform_sampler, surface_texture_pointers[UNIFORM_BUFFER]);
+texture_set_stage(uniform_sampler, surface_get_texture(surfaces[UNIFORM_BUFFER]));
 ITERATE_VISIBLES
 {
     #include "mrt.c"
