@@ -43,9 +43,10 @@ if(fragment_mode == FRAGMENT_REGULAR)
   {
       //EXTRA - LIGHT ACCUMULATION
       vec3 normal = normalize(out_Normal)/2.0 + vec3(0.5);
-      vec3 litup = out_Color.rgb*dot(out_Normal,vec3(0.5,-0.25,0.25));
-      gl_FragColor = vec4(litup, 1.0);
-      // gl_FragColor = unpackColor(depth);
+      //vec3 litup = out_Color.rgb*dot(out_Normal,vec3(0.5,-0.25,0.25));
+      //gl_FragColor = vec4(mix(litup, out_Color, 0.3), 1.0);
+      //gl_FragColor = vec4(vec3(depth), 1.0);
+      gl_FragColor = vec4(normal, 1.0);
   }
 
   return;

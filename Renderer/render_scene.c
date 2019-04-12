@@ -6,7 +6,7 @@ SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
 texture_set_stage(uniform_sampler, surface_get_texture(surfaces[UNIFORM_BUFFER]));
 ITERATE_VISIBLES
 {
-    #include "mrt.c"
+    #include "mrt_dynamic.c"
 }
 
 surface_reset_target();

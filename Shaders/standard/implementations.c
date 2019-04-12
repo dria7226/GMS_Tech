@@ -12,7 +12,7 @@ float packColor(vec4 color)
 
 vec4 unpackColor(float f)
 {
-  f /= MAXIMUM_VIEW_DISTANCE;
+  f /= MAX_VIEW_DISTANCE;
   vec4 enc = f * vec4(1.0, byte, byte*byte, byte*byte*byte);
   enc = fract(enc);
   enc.rgb -= enc.gba/vec3(byte);

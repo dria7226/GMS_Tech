@@ -1,4 +1,4 @@
-varying highp float depth;
+varying float depth;
 varying vec3 out_Normal;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;

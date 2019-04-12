@@ -2,7 +2,7 @@ SET_UNIFORM_I("vertex_mode", VERTEX_FLAT)
 SET_UNIFORM_I("fragment_mode", FRAGMENT_UNIFORM_ENCODING)
 surface_set_target(surfaces[PLAYER_ONE]);
 
-draw_rectangle(0,0, 3,3,false);
+draw_rectangle(0,0, UNIFORM_BUFFER_WIDTH*6,UNIFORM_BUFFER_WIDTH,false);
 
 surface_reset_target();
 

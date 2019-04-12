@@ -1,11 +1,13 @@
 #include "transformations.c"
 
 //project
-depth = length(local.xyz);
+depth = (local.x - MIN_VIEW_DISTANCE)/(MAX_VIEW_DISTANCE - MIN_VIEW_DISTANCE)*MAX_VIEW_DISTANCE;
 
-gl_Position.z = depth/far_clip*local.x;
+gl_Position.z = depth;
 
-gl_Position.xy = local.yz*near_clip;
+depth /= local.x;
+
+gl_Position.xy = local.yz*zoom;
 
 gl_Position.x *= -screen_ratio;
 

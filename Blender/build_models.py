@@ -111,11 +111,11 @@ for subdir, dirs, files in os.walk('E:\Detective_Assets\Blender'):
         continue
 
     for file in files:
+        #compare "last modified" dates
         #do only .blends
         if not file.endswith('.blend'):
             continue
 
-        #compare "last modified" dates
         needs_update = False
 
         #if equivalent doesnt exist, then needs update

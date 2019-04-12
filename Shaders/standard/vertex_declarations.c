@@ -7,15 +7,14 @@ uniform sampler2D uniform_buffer;
 
 uniform int vertex_mode;
 
-varying highp float depth;
+varying float depth;
 varying vec3 out_Normal;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;
 
 uniform vec3 camera_position;
 uniform vec3 camera_angle;
-uniform float near_clip;
-uniform float far_clip;
+uniform float zoom;
 uniform float screen_ratio;
 
 uniform vec3 offset;
