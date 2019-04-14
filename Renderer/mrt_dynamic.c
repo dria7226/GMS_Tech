@@ -4,7 +4,7 @@
 
 var identity = visibles[i];
 
-SET_UNIFORM_F("id", PACK_32_BITS(UNIFORM_BUFFER_WIDTH*UNIFORM_BUFFER_WIDTH))
+SET_UNIFORM_F("id", PACK_32_BITS(identity[INDEX]))
 
 if(identity[Position] != -1)
 {
