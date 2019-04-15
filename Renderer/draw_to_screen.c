@@ -1,12 +1,10 @@
 SET_UNIFORM_I("vertex_mode", VERTEX_FLAT)
-SET_UNIFORM_I("fragment_mode", FRAGMENT_UNIFORM_ENCODING)
+SET_UNIFORM_I("fragment_mode", FRAGMENT_FLAT)
 surface_set_target(surfaces[PLAYER_ONE]);
 
-draw_rectangle(0,0, UNIFORM_BUFFER_WIDTH*6,UNIFORM_BUFFER_WIDTH,false);
+draw_surface_stretched(surfaces[UNIFORM_BUFFER],0,0, UNIFORM_BUFFER_WIDTH*6*10,UNIFORM_BUFFER_WIDTH*10);
 
 surface_reset_target();
-
-SET_UNIFORM_I("fragment_mode", FRAGMENT_FLAT)
 
 //if(IS_SPLITSCREEN)
 //{
