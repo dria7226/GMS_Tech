@@ -2,23 +2,36 @@ attribute vec3 in_Position;		// (x,y,z)
 attribute vec4 in_Color;		// (r,g,b)
 attribute vec2 in_TexCoord;		// (u,v)
 
+#ifdef UNIFORM_BUFFER
 uniform sampler2D uniform_buffer;
+#endif
 
 uniform int vertex_mode;
 
-uniform vec3 camera_position;
-uniform vec3 camera_angle;
+uniform vec4 camera_id;
+uniform vec4 id;
+
+#ifdef UNIFORM_COMPRESSION
+#define zoom camera_id.w
+#else
 uniform float zoom;
+#endif
+
 uniform float screen_ratio;
 
-uniform vec3 id;
-uniform vec3 offset;
-uniform vec3 angle;
+#if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION
+#else
+uniform vec3 in_camera_position;
+uniform vec3 in_camera_angle;
 
-uniform float grayscale;
-uniform vec3 color;
-varying float gs;
-varying vec3  col;
+uniform vec3 in_offset;
+uniform vec3 in_angle;
+uniform vec3 in_color;
+uniform float in_grayscale;
+#endif
+
+varying float grayscale;
+varying vec3  color;
 
 varying float depth;
 varying vec3 out_Normal;

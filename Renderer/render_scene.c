@@ -3,10 +3,13 @@ surface_set_target(surfaces[MRT]);
 SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
 SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
 
-texture_set_stage(uniform_sampler, surface_get_texture(surfaces[UNIFORM_BUFFER]));
+#ifdef UNIFORM_BUFFER
+texture_set_stage(shader_get_sampler_index(standard, "uniform_buffer"), surface_get_texture(surfaces[UNIFORM_BUFFER]));
+#endif
+
 ITERATE_VISIBLES
 {
-    #include "mrt_dynamic.c"
+    #include "mrt.c"
 }
 
 surface_reset_target();

@@ -55,7 +55,7 @@ if(fragment_mode == FRAGMENT_UNIFORM_ENCODING)
     //color and grayscale
     if(target_type == 6.0)
     {
-        gl_FragColor = vec4(col, gs);
+        gl_FragColor = vec4(color, grayscale);
         return;
     }
 

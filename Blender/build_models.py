@@ -52,9 +52,9 @@ def writeVertex(mesh, face, i, file):
             faceCol = mesh.tessface_vertex_colors.active.data[face.index]
 
             face_colors = [faceCol.color1, faceCol.color2, faceCol.color3, faceCol.color4]
-            col = face_colors[i]
+            color = face_colors[i]
 
-            file.write(struct.pack('<BBBB', int(col[0] * 255.0), int(col[1] * 255.0), int(col[2] * 255.0), 255))
+            file.write(struct.pack('<BBBB', int(color[0] * 255.0), int(color[1] * 255.0), int(color[2] * 255.0), 255))
         else:
             file.write(struct.pack('<BBBB', 255, 255, 255, 255))
 

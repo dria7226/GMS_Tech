@@ -1,4 +1,7 @@
+#ifdef UNIFORM_BUFFER
+#undef UNIFORM_BUFFER
 #define UNIFORM_BUFFER 0
+#endif
 #define MRT 1
 #define MIRROR_MRT 2
 #define EDGE 3
@@ -9,4 +12,6 @@
 #define OCCLUSION_DEBUG 8
 #define NO_OF_SURFACES 9
 
+#ifdef UNIFORM_BUFFER
 #define UNIFORM_BUFFER_WIDTH 10.0
+#endif

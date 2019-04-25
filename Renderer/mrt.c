@@ -2,12 +2,9 @@
 //- account for mirrors
 //- account for animations
 
-var identity = visibles[i];
+identity = visibles[i];
 
-SET_UNIFORM_F("id", PACK_32_BITS(identity[INDEX]))
+#define SET_OBJECT_UNIFORMS
+#include "set_uniforms.c"
 
 #include "pick_and_render_lod.c"
-
-#ifdef SHOW_USE
-//uses_uniform_buffer
-#endif

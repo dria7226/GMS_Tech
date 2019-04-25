@@ -14,13 +14,13 @@ if(fragment_mode == FRAGMENT_REGULAR)
 
       //color
       if(c == vec4(1.0))
-        c = vec4(col, 1.0);
+        c = vec4(color, 1.0);
 
       //grayscale
-      if(gs != 1.0)
+      if(grayscale != 1.0)
       {
         vec4 intensity = (c.rgba + c.gbra + c.brga)/3.0;
-        c = mix(intensity, c, gs);
+        c = mix(intensity, c, grayscale);
       }
     }
 

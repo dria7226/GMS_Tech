@@ -13,7 +13,7 @@
 
 #include "Tag_System/tag_definitions.c"
 
-#define PACK_32_BITS(integer) integer%256/255, floor(integer/256)%256/255, floor(integer/(256*256))/255
+#define PACK_32_BITS(integer) integer%256/255, floor(integer/256)%256/255, floor(integer/256/256)/255
 
 #define MAX_VIEW_DISTANCE 300.0
 #define MIN_VIEW_DISTANCE 0.4
@@ -28,3 +28,4 @@
 #define MIN_ANGLE -pi
 
 #define COMPRESSED_NORMAL_POSITION 10.0
+#define COMPRESSED_UNIFORM_POSITION 100000.0
