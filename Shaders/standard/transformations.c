@@ -17,24 +17,33 @@ vec3 camera_angle = in_camera_angle;
 
 #ifdef UNIFORM_COMPRESSION
 //get object uniforms
-offset = abs(id.xyz);
-s = sign(id.xyz);
-s += vec3(1.0) - abs(s);
-angle = floor(offset/COMPRESSED_UNIFORM_POSITION);
-offset = (offset - angle*COMPRESSED_UNIFORM_POSITION)*s;
+#define A offset
+#define B angle
+#define TO_DECOMPRESS id
+#define COMPRESSED_POSITION COMPRESSED_UNIFORM_POSITION
+#include "decompress_float.c"
 angle *= 2.0*pi/999.0;
+offset *= s;
+#undef A
+#undef B
+#undef TO_DECOMPRESS
+#undef COMPRESSED_POSITION
 #endif
 
 vec3 local = in_Position;
 
 #ifdef NORMAL_COMPRESSION
 //local - extract normal and then proceed
-local = abs(local);
-s = sign(in_Position);
-s += vec3(1.0) - abs(s);
-out_Normal = floor(local/COMPRESSED_NORMAL_POSITION);
-local = local - COMPRESSED_NORMAL_POSITION*out_Normal;
+#define A local
+#define B out_Normal
+#define TO_DECOMPRESS in_Position
+#define COMPRESSED_POSITION COMPRESSED_NORMAL_POSITION
+#include "decompress_float.c"
 out_Normal = out_Normal/128.0 - vec3(1.0);
+#undef A
+#undef B
+#undef TO_DECOMPRESS
+#undef COMPRESSED_POSITION
 
 //snap vertices
 #define SMALLEST_UNIT 0.0005
@@ -54,12 +63,17 @@ rotate(out_Normal.yz, angle.x);
 
 #ifdef UNIFORM_COMPRESSION
 //get camera uniforms
-camera_position = abs(camera_id.xyz);
-s = sign(camera_id.xyz);
-s += vec3(1.0) - abs(s);
-camera_angle = floor(camera_position/COMPRESSED_UNIFORM_POSITION);
-camera_position = (camera_position - camera_angle*COMPRESSED_UNIFORM_POSITION)*s;
+#define A camera_position
+#define B camera_angle
+#define TO_DECOMPRESS camera_id
+#define COMPRESSED_POSITION COMPRESSED_UNIFORM_POSITION
+#include "decompress_float.c"
 camera_angle *= 2.0*pi/999.0;
+camera_position *= s;
+#undef A
+#undef B
+#undef TO_DECOMPRESS
+#undef COMPRESSED_POSITION
 #endif
 
 //local to relative
