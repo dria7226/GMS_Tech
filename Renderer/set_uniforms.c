@@ -13,11 +13,10 @@ if(identity[Cached_ID] == -1) continue;
 #endif
 
 #if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION
+#ifdef SET_OBJECT_UNIFORMS
 SET_UNIFORM_F(ID_UNIFORM, identity[Cached_ID].cache[0], identity[Cached_ID].cache[1], identity[Cached_ID].cache[2], identity[Cached_ID].cache[3])
 #endif
-
-#ifndef UNIFORM_BUFFER
-#ifndef UNIFORM_COMPRESSION
+#endif
 
 #ifdef SET_CAMERA_UNIFORMS
 var position = identity[Position];
@@ -25,6 +24,9 @@ SET_UNIFORM_F("in_camera_position", position.coordinates[X], position.coordinate
 var rotation = identity[Rotation];
 SET_UNIFORM_F("in_camera_angle", rotation.angle[ROLL], rotation.angle[PITCH], rotation.angle[YAW])
 #endif
+
+#ifndef UNIFORM_BUFFER
+#ifndef UNIFORM_COMPRESSION
 
 #ifdef SET_OBJECT_UNIFORMS
 if(identity[Position] != -1)

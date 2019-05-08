@@ -2,11 +2,15 @@ vec3 s = vec3(1.0);
 #if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION
 vec3 offset = vec3(0.0);
 vec3 angle = vec3(0.0);
-vec3 camera_position = vec3(0.0);
-vec3 camera_angle = vec3(0.0);
 #else
 vec3 offset = in_offset;
 vec3 angle = in_angle;
+#endif
+
+#ifdef UNIFORM_BUFFER
+vec3 camera_position = vec3(0.0);
+vec3 camera_angle = vec3(0.0);
+#else
 vec3 camera_position = in_camera_position;
 vec3 camera_angle = in_camera_angle;
 #endif
@@ -60,21 +64,6 @@ rotate(local.yz, angle.x);
 rotate(out_Normal.xy, angle.z);
 rotate(out_Normal.xz, angle.y);
 rotate(out_Normal.yz, angle.x);
-
-#ifdef UNIFORM_COMPRESSION
-//get camera uniforms
-#define A camera_position
-#define B camera_angle
-#define TO_DECOMPRESS camera_id
-#define COMPRESSED_POSITION COMPRESSED_UNIFORM_POSITION
-#include "decompress_float.c"
-camera_angle *= 2.0*pi/999.0;
-camera_position *= s;
-#undef A
-#undef B
-#undef TO_DECOMPRESS
-#undef COMPRESSED_POSITION
-#endif
 
 //local to relative
 local += offset - camera_position;

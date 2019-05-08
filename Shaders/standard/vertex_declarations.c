@@ -4,16 +4,16 @@ attribute vec2 in_TexCoord;		// (u,v)
 
 #ifdef UNIFORM_BUFFER
 uniform sampler2D uniform_buffer;
+uniform vec4 camera_id;
 #endif
 
 uniform int vertex_mode;
 
-uniform vec4 camera_id;
 uniform vec4 id;
 
-#ifdef UNIFORM_COMPRESSION
-#define zoom camera_id.w
-#else
+#ifndef UNIFORM_BUFFER
+uniform vec3 in_camera_position;
+uniform vec3 in_camera_angle;
 uniform float zoom;
 #endif
 
@@ -21,9 +21,6 @@ uniform float screen_ratio;
 
 #if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION
 #else
-uniform vec3 in_camera_position;
-uniform vec3 in_camera_angle;
-
 uniform vec3 in_offset;
 uniform vec3 in_angle;
 uniform vec3 in_color;
