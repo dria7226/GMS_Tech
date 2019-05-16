@@ -28,21 +28,12 @@ def writeVertex(mesh, face, i, file):
         model_within_bounds = False
         print("ERR x: ", vert.co.x,"y: ", vert.co.y,"z: ", vert.co.z)
 
-    if face.use_smooth:
-        nx = vert.normal.x
-        ny = vert.normal.y
-        nz = vert.normal.z
-    else:
-        nx = face.normal.x
-        ny = face.normal.y
-        nz = face.normal.z
-
-    nx = math.floor((nx + 1)*128)*COMPRESSED_NORMAL_POSITION
-    ny = math.floor((ny + 1)*128)*COMPRESSED_NORMAL_POSITION
-    nz = math.floor((nz + 1)*128)*COMPRESSED_NORMAL_POSITION
-
     #put position and normal together
     if properties.export_normals:
+        nx = math.floor((vert.normal.x + 1)*128)*COMPRESSED_NORMAL_POSITION
+        ny = math.floor((vert.normal.y + 1)*128)*COMPRESSED_NORMAL_POSITION
+        nz = math.floor((vert.normal.z + 1)*128)*COMPRESSED_NORMAL_POSITION
+
         file.write(struct.pack('<fff',vert.co.x + math.copysign(nx, vert.co.x), vert.co.y + math.copysign(ny, vert.co.y), vert.co.z + math.copysign(nz, vert.co.z)))
     else:
         file.write(struct.pack('<fff', vert.co.x, vert.co.y, vert.co.z))
@@ -75,12 +66,12 @@ def exportMesh(mesh, file):
     for face in mesh.tessfaces:
         if len(face.vertices) >= 3:
             writeVertex(mesh, face, 0, file)
+            writeVertex(mesh, face, 2, file)
             writeVertex(mesh, face, 1, file)
-            writeVertex(mesh, face, 2, file)
         if len(face.vertices) == 4:
-            writeVertex(mesh, face, 2, file)
-            writeVertex(mesh, face, 3, file)
             writeVertex(mesh, face, 0, file)
+            writeVertex(mesh, face, 3, file)
+            writeVertex(mesh, face, 2, file)
 
 def do_export(filepath):
     file = open(filepath, "wb")

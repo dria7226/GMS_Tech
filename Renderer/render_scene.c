@@ -1,4 +1,5 @@
 surface_set_target(surfaces[MRT]);
+gpu_set_tex_filter(true);
 
 SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR)
 SET_UNIFORM_I("fragment_mode", FRAGMENT_REGULAR)
@@ -12,6 +13,7 @@ ITERATE_VISIBLES
     #include "mrt.c"
 }
 
+gpu_set_tex_filter(false);
 surface_reset_target();
 
 //#include "edge.c"

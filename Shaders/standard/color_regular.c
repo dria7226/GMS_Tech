@@ -1,5 +1,20 @@
 out_Color = in_Color;
 
+#ifdef UNIFORM_COMPRESSION
+float color_and_gs = id.a;
+color.r = floor(color_and_gs);
+color_and_gs = (color_and_gs - color.r)*1000.0;
+color.g = floor(color_and_gs);
+color_and_gs = (color_and_gs - color.g)*1000.0;
+color.b = floor(color_and_gs);
+color_and_gs = (color_and_gs - color.b)*1000.0;
+color /= byte;
+grayscale = floor(color_and_gs)/byte;
+#else
+color = in_color;
+grayscale = in_grayscale;
+#endif
+
 //no texture
 if(in_TexCoord == vec2(0.0))
 {

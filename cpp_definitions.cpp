@@ -16,7 +16,7 @@
 #define PACK_32_BITS(integer) integer%256/255, floor(integer/256)%256/255, floor(integer/256/256)/255
 
 #define MAX_VIEW_DISTANCE 300.0
-#define MIN_VIEW_DISTANCE 0.3
+#define MIN_VIEW_DISTANCE 0.16
 
 //2x2x2 miles
 #define MAX_WORLD_WIDTH 10560.0

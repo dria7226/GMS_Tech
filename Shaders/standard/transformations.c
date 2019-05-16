@@ -50,7 +50,7 @@ out_Normal = out_Normal/128.0 - vec3(1.0);
 #undef COMPRESSED_POSITION
 
 //snap vertices
-#define SMALLEST_UNIT 0.0005
+#define SMALLEST_UNIT 0.00075
 local = floor(local/SMALLEST_UNIT)*SMALLEST_UNIT;
 
 //reapply sign
