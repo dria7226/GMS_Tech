@@ -9,7 +9,7 @@ color_and_gs = (color_and_gs - color.g)*1000.0;
 color.b = floor(color_and_gs);
 color_and_gs = (color_and_gs - color.b)*1000.0;
 color /= byte;
-grayscale = floor(color_and_gs)/byte;
+grayscale = color_and_gs/byte;
 #else
 color = in_color;
 grayscale = in_grayscale;
