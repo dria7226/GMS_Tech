@@ -19,7 +19,7 @@ vec4 unpackColor(float f)
   return enc;
 }
 
-//pack_id() dot(id, vec3(byte, byte*256.0, byte*256.0*256.0))
+//pack_id() dot(object_id, vec3(byte, byte*256.0, byte*256.0*256.0))
 
 //percentage to partial percentages
 vec4 float_to_vec4(float f)

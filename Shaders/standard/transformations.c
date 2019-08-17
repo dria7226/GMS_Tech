@@ -23,7 +23,7 @@ vec3 camera_angle = in_camera_angle;
 //get object uniforms
 #define A offset
 #define B angle
-#define TO_DECOMPRESS id
+#define TO_DECOMPRESS object_id
 #define COMPRESSED_POSITION COMPRESSED_UNIFORM_POSITION
 #include "decompress_float.c"
 angle *= 2.0*pi/999.0;

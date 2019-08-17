@@ -1,5 +1,5 @@
-SET_UNIFORM_I("vertex_mode", VERTEX_REGULAR);
-SET_UNIFORM_I("fragment_mode", FRAGMENT_DIFFUSE);
+SET_UNIFORM_I(vertex_mode, VERTEX_REGULAR);
+SET_UNIFORM_I(fragment_mode, FRAGMENT_DIFFUSE);
 
 surface_set_target(occlusion);
 draw_clear(c_white);
@@ -8,7 +8,7 @@ SET_UNIFORM_F("scale", 0.62408,0.5436,0.62796);
 //draw bounding volumes
 ITERATE_STATICS
 {
-  SET_UNIFORM_F("id", PACK_32_BITS(i))
+  SET_UNIFORM_F("object_id", PACK_32_BITS(i))
 
   vertex_submit(cube, pr_trianglelist, -1);
 }
@@ -17,8 +17,8 @@ surface_reset_target();
 //post processing
 surface_set_target(occlusion_first_pass);
 draw_clear(c_white);
-SET_UNIFORM_I("vertex_mode", 1)
-SET_UNIFORM_I("fragment_mode", 3)
+SET_UNIFORM_I(vertex_mode, 1)
+SET_UNIFORM_I(fragment_mode, 3)
 
 draw_surface(occlusion, 0, 0);
 
@@ -26,7 +26,7 @@ surface_reset_target();
 
 surface_set_target(occlusion_second_pass);
 draw_clear(c_white);
-SET_UNIFORM_I("fragment_mode", 4)
+SET_UNIFORM_I(fragment_mode, 4)
 
 draw_surface(occlusion_first_pass, 0, 0);
 

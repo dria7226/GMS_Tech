@@ -8,19 +8,21 @@ if(fragment_mode == FRAGMENT_REGULAR)
   if(target_type == 0.0)
   {
     //DIFFUSE
+
+    //textured
     if(out_TexCoord != vec2(0.0))
     {
       c = texture2D(gm_BaseTexture, out_TexCoord);
 
       //color
       if(c == vec4(1.0))
-        c = vec4(color, 1.0);
+        c = vec4(color.rgb, 1.0);
 
       //grayscale
-      if(grayscale != 1.0)
+      if(color.a != 1.0)
       {
         vec4 intensity = (c.rgba + c.gbra + c.brga)/3.0;
-        c = mix(intensity, c, grayscale);
+        c = mix(intensity, c, color.a);
       }
     }
 
@@ -43,8 +45,26 @@ if(fragment_mode == FRAGMENT_REGULAR)
   {
       //EXTRA - LIGHT ACCUMULATION
       vec3 normal = normalize(out_Normal)/2.0 + vec3(0.5);
-      vec3 litup = out_Color.rgb*dot(out_Normal,vec3(0.5,-0.25,0.25));
-      gl_FragColor = vec4(mix(litup, out_Color.rgb, 0.3), 1.0);
+
+      //textured
+      if(out_TexCoord != vec2(0.0))
+      {
+        c = texture2D(gm_BaseTexture, out_TexCoord);
+
+        //color
+        if(c == vec4(1.0))
+          c = vec4(color.rgb, 1.0);
+
+        //grayscale
+        if(color.a != 1.0)
+        {
+          vec4 intensity = (c.rgba + c.gbra + c.brga)/3.0;
+          c = mix(intensity, c, color.a);
+        }
+      }
+
+      vec3 litup = c.rgb*dot(out_Normal,vec3(0.5,-0.25,0.25));
+      gl_FragColor = vec4(mix(litup, c.rgb, 0.3), 1.0);
       //gl_FragColor = vec4(vec3(depth), 1.0);
       //gl_FragColor = vec4(normal, 1.0);
   }

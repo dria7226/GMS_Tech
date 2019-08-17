@@ -1,7 +1,7 @@
 //optimize uniforms with textures
-if(id.y <= 1.0)
+if(object_id.y <= 1.0)
 {
-    vec2 coordinates = id.xy;
+    vec2 coordinates = object_id.xy;
 
     //offset
     vec4 reading = texture2DLod(uniform_buffer, coordinates, 0.0);

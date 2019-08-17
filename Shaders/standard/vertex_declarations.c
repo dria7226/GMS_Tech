@@ -9,7 +9,7 @@ uniform vec4 camera_id;
 
 uniform int vertex_mode;
 
-uniform vec4 id;
+uniform vec4 object_id;
 
 #ifndef UNIFORM_BUFFER
 uniform vec3 in_camera_position;
@@ -23,12 +23,10 @@ uniform float screen_ratio;
 #else
 uniform vec3 in_offset;
 uniform vec3 in_angle;
-uniform vec3 in_color;
-uniform float in_grayscale;
+uniform vec4 in_color;
 #endif
 
-varying float grayscale;
-varying vec3  color;
+varying vec4 color;
 
 varying float depth;
 varying vec3 out_Normal;

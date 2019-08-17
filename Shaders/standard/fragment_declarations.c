@@ -5,8 +5,7 @@ varying vec2 out_TexCoord;
 
 uniform vec2 a_pixel;
 
-varying float grayscale;
-varying vec3 color;
+varying vec4 color;
 
 uniform int fragment_mode;
 
