@@ -1,11 +1,12 @@
 #ifdef UNIFORM_BUFFER
 #undef UNIFORM_BUFFER
-#define UNIFORM_BUFFER 0
+#define UNIFORM_BUFFER 8
 #endif
-#define MRT 1
-#define MIRROR_MRT 2
-#define EDGE 3
-#define LIGHT_ACCUMULATION 4
+#define MRT 0
+#define MIRROR_MRT 1
+#define BOOLEAN_MRT 2
+#define LIGHT_ACCUMULATION 3
+#define EDGE 4
 #define PLAYER_ONE 5
 #define PLAYER_TWO 6
 #define OCCLUSION 7
