@@ -8,6 +8,7 @@ uniform vec2 a_pixel;
 varying vec4 color;
 
 uniform int fragment_mode;
+uniform int boolean_phase;
 
 float packColor(vec4 color);
 vec4 unpackColor(float f);

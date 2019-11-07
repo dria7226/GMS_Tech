@@ -1,3 +1,6 @@
+#undef LOD_VAR
+#undef LOD_ID
+#undef LOD_RENDER
 for(var b = 0; b < no_of_booleans; b++)
 {
     identity = part_b[b];

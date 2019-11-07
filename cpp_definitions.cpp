@@ -23,7 +23,7 @@
 #define MAX_OFFSET MAX_WORLD_WIDTH/2.0
 #define MIN_OFFSET -MAX_WORLD_WIDTH/2.0
 
-#define pi 3.1415926535897932384626433832795
+#define pi 3.1415926
 #define MAX_ANGLE pi
 #define MIN_ANGLE -pi
 
@@ -31,3 +31,6 @@
 
 #define COMPRESSED_NORMAL_POSITION 10.0
 #define COMPRESSED_UNIFORM_POSITION 100000.0
+#define GET_SIGN(number) s = sign(number); \
+s += (s==0);
+#define COMPRESS_COORDINATE(position, normal)  s*(floor((normal + 1)/2*byte)*COMPRESSED_NORMAL_POSITION + abs(position))

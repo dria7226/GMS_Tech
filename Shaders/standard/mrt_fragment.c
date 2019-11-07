@@ -1,4 +1,4 @@
-if(fragment_mode == FRAGMENT_REGULAR)
+if(fragment_mode == FRAGMENT_MRT)
 {
   vec4 c = out_Color;
 
@@ -7,6 +7,25 @@ if(fragment_mode == FRAGMENT_REGULAR)
 
   if(target_type == 0.0)
   {
+    // if(stencil)
+    // {
+    //     if(texture2D(gm_BaseTexture, gl_FragCoord + vec2(0.5)).a == 0.0)
+    //     {
+    //         discard; return;
+    //     }
+    // }
+
+    // if(boolean_phase == C_1)
+    // {
+    //     float relative_depth = dot(vec4(1.0), unpackColor(depth));
+    //     if( relative_depth > dot(vec4(1.0), texture2D(boolean_sampler, gl_FragCoord))
+    //         &&
+    //         relative_depth < dot(vec4(1.0), texture2D(boolean_sampler, gl_FragCoord)))
+    //     {
+    //         discard; return;
+    //     }
+    // }
+
     //DIFFUSE
 
     //textured
@@ -26,23 +45,30 @@ if(fragment_mode == FRAGMENT_REGULAR)
       }
     }
 
-    gl_FragColor = c;
+    gl_FragColor = c; return;
+
+    discard; return;
   }
 
   if(target_type == 1.0)
   {
-    //DEPTH
-    gl_FragColor = unpackColor(depth);
+      //DEPTH
+      gl_FragColor = unpackColor(depth); return;
   }
 
   if(target_type == 2.0)
   {
-    //NORMAL
-    gl_FragColor = vec4(normalize(out_Normal)/2.0+vec3(0.5), 1.0);
+      //NORMAL
+      gl_FragColor = vec4(normalize(out_Normal)/2.0+vec3(0.5), 1.0); return;
   }
 
   if(target_type == 3.0)
   {
+      //if(boolean_phase == C_1)
+      //{
+          //mark
+      //}
+
       //EXTRA - LIGHT ACCUMULATION
       vec3 normal = normalize(out_Normal)/2.0 + vec3(0.5);
 
@@ -67,6 +93,8 @@ if(fragment_mode == FRAGMENT_REGULAR)
       gl_FragColor = vec4(mix(litup, c.rgb, 0.3), 1.0);
       //gl_FragColor = vec4(vec3(depth), 1.0);
       //gl_FragColor = vec4(normal, 1.0);
+
+      return;
   }
 
   return;

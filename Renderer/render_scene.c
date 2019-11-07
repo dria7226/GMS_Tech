@@ -2,7 +2,7 @@ surface_set_target(surfaces[MRT]);
 gpu_set_tex_filter(true);
 
 SET_UNIFORM_I(vertex_mode, VERTEX_REGULAR)
-SET_UNIFORM_I(fragment_mode, FRAGMENT_REGULAR)
+SET_UNIFORM_I(fragment_mode, FRAGMENT_MRT)
 
 #ifdef UNIFORM_BUFFER
 texture_set_stage(uniform_sampler, surface_get_texture(surfaces[UNIFORM_BUFFER]));

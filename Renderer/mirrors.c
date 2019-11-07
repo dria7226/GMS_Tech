@@ -7,7 +7,7 @@ ITERATE_MIRRORS
 	surface_set_target(surfaces[MIRROR_MRT]);
 
 	SET_UNIFORM_I(vertex_mode, VERTEX_REGULAR)
-	SET_UNIFORM_I(fragment_mode, FRAGMENT_REGULAR)
+	SET_UNIFORM_I(fragment_mode, FRAGMENT_MRT)
 
 	ITERATE_STATIC
 	{

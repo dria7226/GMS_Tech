@@ -4,10 +4,12 @@ CACHE_UNIFORM(zoom)
 
 CACHE_UNIFORM(vertex_mode)
 CACHE_UNIFORM(fragment_mode)
+CACHE_UNIFORM(boolean_phase)
 CACHE_UNIFORM(a_pixel)
 CACHE_UNIFORM(screen_ratio)
 #ifdef UNIFORM_BUFFER
 uniform_sampler = shader_get_sampler_index(standard, "uniform_buffer");
+boolean_sampler = shader_get_sampler_index(standard, "boolean_sampler");
 CACHE_UNIFORM(camera_id)
 #endif
 

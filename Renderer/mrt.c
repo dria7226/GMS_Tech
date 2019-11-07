@@ -1,6 +1,7 @@
 //NOTES
 //- account for mirrors
 //- account for animations
+//- account for boolean rendering
 
 var lod_index = 0;
 
@@ -10,15 +11,16 @@ var lod_index = 0;
 
 identity = visibles[i];
 
-//if(identity[BOOLEAN] != -1)
-//{
-//    #include "boolean.c"
-//}
-//else
+if(identity[Boolean] != -1)
+{
+    #include "boolean.c"
+}
+else
 {
     #define SET_OBJECT_UNIFORMS
     #include "set_uniforms.c"
 
+    #undef LOD_RENDER
     #define LOD_RENDER lod_index
     #include "render_lod.c"
 }

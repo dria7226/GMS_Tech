@@ -4,14 +4,16 @@
 #endif
 #define MRT 0
 #define MIRROR_MRT 1
-#define BOOLEAN_MRT 2
-#define LIGHT_ACCUMULATION 3
-#define EDGE 4
-#define PLAYER_ONE 5
-#define PLAYER_TWO 6
-#define OCCLUSION 7
-#define OCCLUSION_DEBUG 8
-#define NO_OF_SURFACES 9
+#define BOOLEAN_FRONT_B 2
+#define BOOLEAN_BACK_A 3
+#define BOOLEAN_BACK_B 4
+#define LIGHT_ACCUMULATION 5
+#define EDGE 6
+#define PLAYER_ONE 7
+#define PLAYER_TWO 8
+#define OCCLUSION 9
+#define OCCLUSION_DEBUG 10
+#define NO_OF_SURFACES 11
 
 #ifdef UNIFORM_BUFFER
 #define UNIFORM_BUFFER_WIDTH 10.0
