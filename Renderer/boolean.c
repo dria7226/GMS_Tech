@@ -45,12 +45,12 @@ surface_reset_target();
 SET_UNIFORM_I(fragment_mode, FRAGMENT_MRT)
 surface_set_target(surfaces[MRT]);
 //assign boolean surfaces to samplers
-// texture_set_stage(boolean_front_b_sampler, surface_get_texture(surfaces[BOOLEAN_FRONT_B]));
-// texture_set_stage(boolean_back_a_sampler, surface_get_texture(surfaces[BOOLEAN_BACK_A]));
-// texture_set_stage(boolean_back_b_sampler, surface_get_texture(surfaces[BOOLEAN_BACK_B]));
+//texture_set_stage(boolean_front_b_sampler, surface_get_texture(surfaces[BOOLEAN_FRONT_B]));
+//texture_set_stage(boolean_back_a_sampler, surface_get_texture(surfaces[BOOLEAN_BACK_A]));
+//texture_set_stage(boolean_back_b_sampler, surface_get_texture(surfaces[BOOLEAN_BACK_B]));
 
 // //draw front of A
-// #include "boolean_phase_c_1.c"
+//#include "boolean_phase_c_1.c"
 
 // if(identity[Boolean].fill_in)
 // {

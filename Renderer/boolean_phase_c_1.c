@@ -1,4 +1,4 @@
-SET_UNIFORM_I(boolean_phase, C_1)
+SET_UNIFORM_I(boolean_phase, A)
 #undef LOD_RENDER
 #define LOD_RENDER lod_index
 #include "render_lod.c"
