@@ -9,9 +9,12 @@ CACHE_UNIFORM(a_pixel)
 CACHE_UNIFORM(screen_ratio)
 #ifdef UNIFORM_BUFFER
 uniform_sampler = shader_get_sampler_index(standard, "uniform_buffer");
-boolean_sampler = shader_get_sampler_index(standard, "boolean_sampler");
 CACHE_UNIFORM(camera_id)
 #endif
+
+boolean_front_b_sampler = shader_get_sampler_index(standard, "boolean_front_b_sampler");
+boolean_back_b_sampler = shader_get_sampler_index(standard, "boolean_back_b_sampler");
+boolean_back_a_sampler = shader_get_sampler_index(standard, "boolean_back_a_sampler");
 
 CACHE_UNIFORM(object_id)
 #if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION

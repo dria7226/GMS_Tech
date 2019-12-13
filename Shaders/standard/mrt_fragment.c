@@ -2,6 +2,18 @@ if(fragment_mode == FRAGMENT_MRT)
 {
   vec4 c = out_Color;
 
+  if(boolean_phase == 1)
+  {
+      vec2 sample_coord = gl_FragCoord.xy*a_pixel*vec2(0.5);
+      if( depth > packColor(
+          texture2D(boolean_front_b_sampler, sample_coord))
+          &&
+          depth < packColor( texture2D(boolean_back_b_sampler, sample_coord)) )
+          {
+              discard; return;
+          }
+  }
+
   //calculate target type
   float target_type = mod(gl_FragCoord.x - 0.5, 2.0) + mod(gl_FragCoord.y - 0.5, 2.0)*2.0;
 
@@ -9,18 +21,7 @@ if(fragment_mode == FRAGMENT_MRT)
   {
     // if(stencil)
     // {
-    //     if(texture2D(gm_BaseTexture, gl_FragCoord + vec2(0.5)).a == 0.0)
-    //     {
-    //         discard; return;
-    //     }
-    // }
-
-    // if(boolean_phase == A)
-    // {
-    //     float relative_depth = dot(vec4(1.0), unpackColor(depth));
-    //     if( relative_depth > dot(vec4(1.0), texture2D(boolean_sampler, gl_FragCoord))
-    //         &&
-    //         relative_depth < dot(vec4(1.0), texture2D(boolean_sampler, gl_FragCoord)))
+    //     if(texture2D(gm_BaseTexture, gl_FragCoord.xy + vec2(0.5)).a == 0.0)
     //     {
     //         discard; return;
     //     }
@@ -91,7 +92,7 @@ if(fragment_mode == FRAGMENT_MRT)
 
       vec3 litup = c.rgb*dot(out_Normal,vec3(0.5,-0.25,0.25));
       gl_FragColor = vec4(mix(litup, c.rgb, 0.3), 1.0);
-      //gl_FragColor = vec4(vec3(depth), 1.0);
+      //gl_FragColor = unpackColor(depth);
       //gl_FragColor = vec4(normal, 1.0);
 
       return;

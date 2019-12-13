@@ -5,11 +5,6 @@ void rotate(inout vec2 point, float angle)
   point.x = X;
 }
 
-float packColor(vec4 color)
-{
-    return dot( color, vec4(1.0, 1.0/byte, 1.0/(byte*byte), 1.0/(byte*byte*byte)) );
-}
-
 vec4 unpackColor(float f)
 {
   f /= MAX_VIEW_DISTANCE;
@@ -17,7 +12,7 @@ vec4 unpackColor(float f)
   enc = fract(enc);
   enc.rgb -= enc.gba/vec3(byte);
   return enc;
-}
+ }
 
 //pack_id() dot(object_id, vec3(byte, byte*256.0, byte*256.0*256.0))
 

@@ -8,6 +8,7 @@ SET_UNIFORM_I(fragment_mode, FRAGMENT_MRT)
 texture_set_stage(uniform_sampler, surface_get_texture(surfaces[UNIFORM_BUFFER]));
 #endif
 
+var last_boolean_group = -1;
 ITERATE_VISIBLES
 {
     #include "mrt.c"

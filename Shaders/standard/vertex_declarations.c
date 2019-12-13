@@ -33,7 +33,6 @@ varying vec3 out_Normal;
 varying vec4 out_Color;
 varying vec2 out_TexCoord;
 
-float packColor(vec4 color);
 vec4 unpackColor(float f);
 void rotate(inout vec2 point, float angle);
 float vec4_to_float(vec4 color);
