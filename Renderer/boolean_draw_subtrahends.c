@@ -1,7 +1,3 @@
-#undef LOD_VAR
-#undef LOD_RENDER
-#undef LOD_ID
-#define LOD_ID identity
 for(var b = 0; b < no_of_subtrahends; b++)
 {
     identity = subtrahends[b];
@@ -10,9 +6,12 @@ for(var b = 0; b < no_of_subtrahends; b++)
     #include "set_uniforms.c"
 
     var lod_b = 0;
+    #undef LOD_VAR
     #define LOD_VAR lod_b
     #include "pick_lod.c"
 
-    #define LOD_RENDER lod_b
-    #include "render_lod.c"
+    if(identity[VBO] != -1)
+    {
+        vertex_submit(identity[VBO].lod[LOD_VAR], pr_trianglelist, 0);
+    }
 }

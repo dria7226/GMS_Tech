@@ -12,9 +12,7 @@ uniform_sampler = shader_get_sampler_index(standard, "uniform_buffer");
 CACHE_UNIFORM(camera_id)
 #endif
 
-boolean_front_b_sampler = shader_get_sampler_index(standard, "boolean_front_b_sampler");
-boolean_back_b_sampler = shader_get_sampler_index(standard, "boolean_back_b_sampler");
-boolean_back_a_sampler = shader_get_sampler_index(standard, "boolean_back_a_sampler");
+boolean_depth_b_sampler = shader_get_sampler_index(standard, "boolean_depth_b_sampler");
 
 CACHE_UNIFORM(object_id)
 #if defined UNIFORM_BUFFER || UNIFORM_COMPRESSION

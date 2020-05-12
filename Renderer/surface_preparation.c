@@ -4,6 +4,7 @@ surface_texture_pointers[NO_OF_SURFACES - 1] = -1;
 
 surface_info[MRT] = [2,2];
 surface_info[MIRROR_MRT] = [2,2];
+surface_info[BOOLEAN_DEPTH_B] = [2,1];
 surface_info[OCCLUSION] = [0.1,0.1];
 surface_info[NO_OF_SURFACES-1] = 0;
 

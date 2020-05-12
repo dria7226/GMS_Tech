@@ -11,7 +11,7 @@ SET_UNIFORM_I(fragment_mode, FRAGMENT_FLAT)
 
 gpu_set_blendenable(true);
 gpu_set_blendmode(bm_normal);
-draw_surface_ext(surfaces[BOOLEAN_FRONT_B],0,0,1,1,0,0,0.5);
+draw_surface_ext(surfaces[BOOLEAN_DEPTH_B],0,0,0.5,1,0,0,0.5);
 gpu_set_blendenable(false);
 
 #ifdef SHOW_USE

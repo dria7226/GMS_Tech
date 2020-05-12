@@ -19,7 +19,7 @@ surface_reset_target();
 
 //#include "collect_lights.c"
 
-//non-shadow lights (deferred omni-lights)
+//non-shadow lights (deferred light volumes)
 //#include "lighting.c"
 
 //shadow lights (shadow mapped spotlights)
